@@ -1,7 +1,7 @@
 # AnomalyBot
 This is a disord bot written in Golang that is used in 3 different servers 2 of which are the official development servers. The bot provides some utility like playing music into a voice chat, things like moderation to kick and ban people, integration with the Project Anomaly API to give you stats and more
 ## Part of the Anomaly Software Package™
-As part of the Anomaly Software Package it comes with integration for Project Anomaly, Project Apex, the Project Anomaly itch.io page and the Anomaly website.
+As part of the Anomaly Software Package it comes with integration for Project Anomaly, Project Apex, BlackoutFPS, the Project Anomaly itch.io page and the Anomaly website.
 ## Installation
 1. Install Golang
 2. Download the bot files 

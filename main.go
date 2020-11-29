@@ -35,8 +35,8 @@ func main() {
 
 	// Register the messageCreate func as a callback for MessageCreate events.
 	dg.AddHandler(messageCreate)
-
 	// In this example, we only care about receiving message events.
+	dg.AddHandler()
 	dg.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsGuildMessages)
 
 	// Open a websocket connection to Discord and begin listening.
@@ -318,6 +318,18 @@ func parseCommand(command string, s *discordgo.Session, m *discordgo.MessageCrea
 		}
 	}
 
+	if strings.Contains(cmd, prefix+"prefix") {
+		prefix = subCmd
+	}
+
+	if strings.Contains(cmd, prefix+"play") {
+		s.ChannelMessageSend(m.ChannelID, "Playing "+subCmd)
+	}
+
+	if strings.Contains(cmd, prefix+"ban") {
+		s.GuildBanCreate(m.GuildID, subCmd, 1)
+	}
+
 	if strings.Contains(cmd, "&police") {
 		s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/676494184626126858/739786778327777380/unknown.png")
 	}
@@ -340,6 +352,8 @@ func parseCommand(command string, s *discordgo.Session, m *discordgo.MessageCrea
 
 	if strings.HasPrefix(cmd, prefix+"verify") {
 		s.GuildMemberRoleAdd(m.GuildID, m.Author.ID, "573049402428620810")
+		//s.GuildMemberRoleAdd(m.GuildID, m.Author.ID, m.GuildID.)
+
 		s.GuildMemberRoleAdd(m.GuildID, m.Author.ID, "571288573781737483")
 		s.GuildMemberRoleAdd(m.GuildID, m.Author.ID, "717037253691572327")
 		s.GuildMemberRoleAdd(m.GuildID, m.Author.ID, "717037253292982321")
@@ -357,15 +371,5 @@ func parseCommand(command string, s *discordgo.Session, m *discordgo.MessageCrea
 
 	if strings.Contains(cmd, prefix+"mcdonalds") {
 		s.ChannelMessageSend(m.ChannelID, "https://cdn.discordapp.com/attachments/758053551082831973/762254042293862440/Ronald_McDonald_insanity.mp4")
-
 	}
-
-	if strings.Contains(cmd, prefix+"prefix") {
-		prefix = subCmd
-	}
-
-	if strings.Contains(cmd, prefix+"play") {
-		s.ChannelMessageSend(m.ChannelID, "Playing "+subCmd)
-	}
-
 }
